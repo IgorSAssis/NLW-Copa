@@ -1,0 +1,19 @@
+services:
+  frontend:
+    image: nlw-copa-web:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web:/app
+    networks:
+      - nlw-copa-network
+  backend:
+    image: nlw-copa-server:latest
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./server:/app
+    networks:
+      - nlw-copa-network
+networks:
+  nlw-copa-network: {}
