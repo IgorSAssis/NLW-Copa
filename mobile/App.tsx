@@ -7,8 +7,14 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { THEME } from "./src/styles/theme";
+
+import { AuthContextProvider } from "./src/contexts/AuthContext";
+
 import { Loading } from "./src/components/Loading";
 import { SignIn } from "./src/screens/SignIn";
+import { NewPool } from "./src/screens/NewPool";
+import { FindPool } from "./src/screens/FindPool";
+import { Pools } from "./src/screens/Pools";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,12 +25,14 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar 
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
-      {fontsLoaded ? <SignIn /> : <Loading />}
+      <AuthContextProvider>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
+        {fontsLoaded ? <Pools /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
