@@ -7,10 +7,7 @@ import { Button } from "../components/Button";
 import { useAuth } from "../hooks/useAuth";
 
 export function SignIn() {
-
-  const {
-    signIn
-  } = useAuth();
+  const { signIn, isUserLoading } = useAuth();
 
   return (
     <Center flex={1} bgColor="gray.900" p={7}>
@@ -19,15 +16,18 @@ export function SignIn() {
         type="SECONDARY"
         buttonText="ENTRAR COM O GOOGLE"
         mt={12}
-        onPress={signIn }
-        leftIcon={<Icon as={Fontisto} name="google" color="white" size="md"/>}
+        onPress={signIn}
+        leftIcon={<Icon as={Fontisto} name="google" color="white" size="md" />}
+        isLoading={isUserLoading}
+        _loading={{
+          _spinner: {
+            color: "white",
+          },
+        }}
       />
-      <Text
-        color="white"
-        textAlign="center"
-        marginTop={4}
-      >
-        Não utilizamos nenhuma informação além {'\n'} do seu email para realizar a criação da sua conta.
+      <Text color="white" textAlign="center" marginTop={4}>
+        Não utilizamos nenhuma informação além {"\n"} do seu email para realizar
+        a criação da sua conta.
       </Text>
     </Center>
   );
